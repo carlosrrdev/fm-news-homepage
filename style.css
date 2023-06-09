@@ -16,6 +16,7 @@
   font-weight: 800;
   font-style: normal;
 }
+
 /* ---------------------------------------- */
 :root {
   --clr-soft-orange: hsl(35, 77%, 62%);
@@ -31,18 +32,14 @@
   padding: 0;
   box-sizing: border-box;
 }
-html,
-body,
-.container {
-  height: 100%;
-}
 body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: var(--clr-off-white);
   color: var(--clr-dark-blue);
 }
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 img {
@@ -61,18 +58,35 @@ main {
 footer {
   padding: 2rem;
 }
+
 /* ---------------------------------------- */
 .container {
+  min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   padding: 1.5rem;
   gap: 3rem 0;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 .navbar {
   padding-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.navbar ul {
+  display: flex;
+  gap: 0 3rem;
+  color: var(--clr-grayish-blue);
+}
+.navbar ul a {
+  text-decoration: none;
+  color: inherit;
+}
+.navbar ul a:hover {
+  color: var(--clr-soft-orange);
 }
 .hero {
   display: flex;
@@ -97,6 +111,9 @@ footer {
   font-weight: 800;
   letter-spacing: 2px;
 }
+.hero button:hover {
+  background: var(--clr-dark-blue);
+}
 .feed {
   background-color: var(--clr-dark-blue);
   color: var(--clr-off-white);
@@ -105,6 +122,10 @@ footer {
 .feed h2 {
   color: var(--clr-soft-orange);
   margin-bottom: 2rem;
+}
+.feed ul li h3:hover {
+  cursor: pointer;
+  color: var(--clr-soft-orange);
 }
 .feed li:not(:last-of-type) {
   margin-bottom: 1.5rem;
@@ -142,6 +163,10 @@ footer {
 }
 .top-three li div h2 {
   font-size: 1rem;
+  cursor: pointer;
+}
+.top-three li div h2:hover {
+  color: var(--clr-soft-red);
 }
 .top-three li div p {
   color: var(--clr-grayish-blue);
@@ -154,4 +179,121 @@ footer {
 .attribution a {
   color: hsl(228, 45%, 44%);
 }
+
 /* ---------------------------------------- */
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+.modal-backdrop {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  background-color: var(--clr-grayish-blue);
+  opacity: 0.6;
+}
+.modal-body {
+  position: relative;
+  z-index: 4000;
+  background-color: white;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem 0;
+  padding: 2rem;
+  transform: translateX(100%);
+  animation-name: mobileMenu;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+.modal-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem 0;
+}
+.modal-body ul li a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: inherit;
+}
+#modal-close-btn {
+  background: none;
+  border: none;
+  margin-left: auto;
+}
+
+/* ---------------------------------------- */
+@keyframes mobileMenu {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ---------------------------------------- */
+@media screen and (min-width: 1440px) {
+  main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 600px auto;
+    gap: 5rem 2.5rem;
+  }
+  .hero {
+    grid-area: 1/1/2/2;
+    display: grid;
+    grid-template-columns: 350px auto;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem 4rem;
+  }
+  .hero picture {
+    grid-area: 1/1/2/3;
+  }
+  .hero h1 {
+    grid-area: 2/1/3/2;
+  }
+  .hero div {
+    grid-area: 2/2/3/3;
+  }
+  .feed {
+    grid-area: 1/2/2/3;
+  }
+  .feed h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .feed li h3 {
+    font-size: 1.6rem;
+  }
+  .top-three {
+    grid-area: 2/1/3/3;
+  }
+  .top-three ul {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0 3.5rem;
+  }
+  .top-three li span {
+    font-size: 2.5rem;
+  }
+  .top-three li div h2 {
+    font-size: 1.2rem;
+  }
+}

@@ -12,6 +12,7 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <title>Frontend Mentor | News homepage</title>
+    <script src="./app.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -20,17 +21,20 @@
           <a href="/">
             <img src="./assets/images/logo.svg" alt="logo" />
           </a>
-          <button type="button" id="mobile-menu-toggle">
-            <img src="./assets/images/icon-menu.svg" alt="mobile menu icon" />
-          </button>
         </nav>
       </header>
       <main>
         <section aria-label="hero" class="hero">
-          <img
-            src="./assets/images/image-web-3-mobile.jpg"
-            alt="abstract shapes"
-          />
+          <picture>
+            <source
+              srcset="./assets/images/image-web-3-desktop.jpg"
+              media="(min-width: 900px)"
+            />
+            <img
+              src="./assets/images/image-web-3-mobile.jpg"
+              alt="abstract shapes"
+            />
+          </picture>
           <h1>The Bright Future of Web 3.0?</h1>
           <div>
             <p>
